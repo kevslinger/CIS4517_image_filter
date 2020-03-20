@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Esslinger Project 1</title>
+    </head>
+  <body>
+    <div class="content">
+      <h3>Esslinger Project 1: Image Filter</h3>
+      <p>Hello there! You can upload an image and apply a filter of your choice</p>
+      <div>
+        <h3>You can upload your file here:</h3>
+        <form method="POST" action="/upload" enctype=multipart/form-data>
+          <input type=file name=file>
+          <input type=submit value=Upload>
+        </form>
+      </div>
+      <div>
+        <h3>You can see your uploaded files here:</h3>
+        <p>You can click on the filename to download it.</p>
+        <ul>
+          {% for item in contents %}
+          <li>
+            <a href="/download/{{ item.key }}"> {{ item.key }} </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
