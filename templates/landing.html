@@ -8,8 +8,15 @@
       <h3>Esslinger Project 1: Image Filter</h3>
       <p>Hello there! You can upload an image and apply a filter of your choice</p>
       <div>
-        <h3>You can upload your file here:</h3>
-        <form method="POST" action="/upload" enctype=multipart/form-data>
+        <h3>You can upload your file to s3 here:</h3>
+        <form method="POST" action="/upload_s3" enctype=multipart/form-data>
+          <input type=file name=file>
+          <input type=submit value=Upload>
+        </form>
+      </div>
+      <div>
+        <h3>You can upload your file locally here:</h3>
+        <form method="POST" action="/upload_local" enctype=multipart/form-data>
           <input type=file name=file>
           <input type=submit value=Upload>
         </form>

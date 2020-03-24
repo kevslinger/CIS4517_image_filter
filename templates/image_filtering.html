@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Esslinger Project 1</title>
+  </head>
+  <body>
+    <div class="content">
+      <h3>Esslinger Project 1: Image Filter</h3>
+      <form method="GET" action="/landing">
+        <input type=submit value="Return to Home Page">
+      </form>
+      <p>On this page, you can apply filters to your image!</p>
+      <div>
+        <h3>Your uploaded image</h3>
+        <img src="http://127.0.0.1:5000/uploads/{{ filename }}" alt={{ filename }} width="240" height="180" />
+      </div>
+      <div>
+        <h3>Apply a filter here</h3>
+        <form method="POST" action="/filter/{{ filename }}/blur">
+          <input type=submit value=Blur!>
+        </form>
+        <form method="POST" action="/filter/{{ filename }}/poster">
+          <input type=submit value=Poster!>
+        </form>
+      </div>
+      <div>
+        {% block filter %}
+        {% endblock %}
+      </div>
+  </body>
+</html>

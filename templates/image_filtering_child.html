@@ -1,0 +1,7 @@
+{% extends "image_filtering.html" %}
+
+{% block filter %}
+        <h3>See the filter result here</h3>
+        <img src="http://127.0.0.1:5000/uploads/{{ outputfilename }}" alt="{{ outputfilename }}" width="240" heigth="180" />
+        <a href="/download_local/{{ outputfilename }}" target="_blank">Click here to download!</a>
+{% endblock %}
