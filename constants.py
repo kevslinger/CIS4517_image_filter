@@ -14,6 +14,6 @@ import glob
 def local_list_files():
     file_list = []
     for filename in glob.glob('/Users/kevin/Desktop/New Classes/Cloud Computing/image_flask_app/uploads/*.jpg'):
-        file_list.append({'key' : filename})
+        file_list.append({'Key' : filename})
     return file_list
 # END TODO
