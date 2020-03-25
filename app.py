@@ -23,6 +23,8 @@ def landing():
     contents = s3_operations.list_files(constants.BUCKET)
     #contents = constants.local_list_files() # TODO: NOT NEEDED FOR REMOTE
     print(contents)
+    for item in contents:
+        print(item['key'])
     return render_template("landing.html", contents=contents)
 
 #######################
