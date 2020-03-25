@@ -1,4 +1,4 @@
-BASE_FOLDER = '/Users/kevin/Desktop/New Classes/Cloud Computing/image_flask_app/'
+BASE_FOLDER = '/home/ubuntu/CIS4517_image_filter'
 UPLOAD_FOLDER = 'static/'
 DOWNLOAD_FOLDER = 'downloads/'
 BUCKET = 'project1testbucket'

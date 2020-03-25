@@ -25,8 +25,8 @@ def hello():
 
 @app.route("/landing")
 def landing():
-    #contents = []# TODO contents = list_files(constants.BUCKET)
-    contents = local_list_files() # TODO: NOT NEEDED FOR REMOTE
+    contents = []# TODO contents = list_files(constants.BUCKET)
+    #contents = local_list_files() # TODO: NOT NEEDED FOR REMOTE
     return render_template("landing.html", contents=contents)
 
 @app.route("/filter/<filename>")
