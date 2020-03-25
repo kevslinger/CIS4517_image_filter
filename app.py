@@ -86,21 +86,26 @@ def render_filter(filename):
 
 # apply_<preset> are the endpoints after the filter
 # has been processed.
-@app.route("/filter/<filename>/sepia", methods=['POST'])
-def apply_sepia(filename):
-    outputfilename = image_processing.applyfilter(filename, 'blur')
+@app.route("/filter/<filename>/<preset>", methods=['POST'])
+def apply_preset(filename, preset):
+    outputfilename = image_processing.applyfilter(filename, preset)
     return render_template("image_filtering_child.html", filepath=filename,
-                               outputfilename=outputfilename)
-@app.route("/filter/<filename>/blur", methods=['POST'])
-def apply_blur(filename):
-    outputfilename = image_processing.applyfilter(filename, 'blur')
-    return render_template("image_filtering_child.html", filepath=filename,
-                               outputfilename=outputfilename)
-@app.route("/filter/<filename>/poster", methods=['POST'])
-def apply_poster(filename):
-    outputfilename = image_processing.applyfilter(filename, 'poster')
-    return render_template("image_filtering_child.html", filepath=filename,
-                               outputfilename=outputfilename)
+                                 outputfilename=outputfilename)
+#@app.route("/filter/<filename>/sepia", methods=['POST'])
+#def apply_sepia(filename):
+#    outputfilename = image_processing.applyfilter(filename, 'blur')
+#    return render_template("image_filtering_child.html", filepath=filename,
+#                               outputfilename=outputfilename)
+#@app.route("/filter/<filename>/blur", methods=['POST'])
+#def apply_blur(filename):
+#    outputfilename = image_processing.applyfilter(filename, 'blur')
+#    return render_template("image_filtering_child.html", filepath=filename,
+#                               outputfilename=outputfilename)
+#@app.route("/filter/<filename>/poster", methods=['POST'])
+#def apply_poster(filename):
+#    outputfilename = image_processing.applyfilter(filename, 'poster')
+#    return render_template("image_filtering_child.html", filepath=filename,
+#                               outputfilename=outputfilename)
 
 ##########################
 ### Download Pages #######
@@ -122,4 +127,4 @@ def download(filename):
 
     
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=80)
+    app.run(host="0.0.0.0", port=80, debug=True)
