@@ -20,7 +20,7 @@ def route_to_landing():
     return redirect("/landing")
 @app.route("/landing")
 def landing():
-    contents = list_files(constants.BUCKET)
+    contents = s3_operations.list_files(constants.BUCKET)
     #contents = local_list_files() # TODO: NOT NEEDED FOR REMOTE
     return render_template("landing.html", contents=contents)
 
@@ -122,4 +122,4 @@ def download(filename):
 
     
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=80, debug=True)
+    app.run(host="0.0.0.0", port=80)
