@@ -31,23 +31,23 @@ def landing():
 
 @app.route("/filter/<filename>")
 def render_filter(filename):
-    return render_template("image_filtering.html", filename=filename)
+    return render_template("image_filtering.html", filepath=filename)
                            #filename='http://127.0.0.1:5000/uploads/' + filename)
 
 @app.route("/filter/<filename>/sepia", methods=['POST'])
 def apply_sepia(filename):
     outputfilename = image_processing.applyfilter(filename, 'blur')
-    return render_template("image_filtering_child.html", filename=filename,
+    return render_template("image_filtering_child.html", filepath=filename,
                                outputfilename=outputfilename)
 @app.route("/filter/<filename>/blur", methods=['POST'])
 def apply_blur(filename):
     outputfilename = image_processing.applyfilter(filename, 'blur')
-    return render_template("image_filtering_child.html", filename=filename,
+    return render_template("image_filtering_child.html", filepath=filename,
                                outputfilename=outputfilename)
 @app.route("/filter/<filename>/poster", methods=['POST'])
 def apply_poster(filename):
     outputfilename = image_processing.applyfilter(filename, 'poster')
-    return render_template("image_filtering_child.html", filename=filename,
+    return render_template("image_filtering_child.html", filepath=filename,
                                outputfilename=outputfilename)
 
 @app.route("/download_local/<filename>", methods=['GET'])
@@ -75,7 +75,7 @@ def upload():
     if request.method == "POST":
         f = request.files['file']
         f.save(os.path.join(app.config['BASE_FOLDER'], app.config['UPLOAD_FOLDER'], f.filename))
-        s3_operations.upload_file(f"uploads/{f.filename}", BUCKET)
+        s3_operations.upload_file(f"static/{f.filename}", BUCKET)
 
         return redirect("/landing")
     
@@ -110,4 +110,4 @@ def upload_file():
 
     
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=80)
+    app.run(host="0.0.0.0", port=80, debug=True)
