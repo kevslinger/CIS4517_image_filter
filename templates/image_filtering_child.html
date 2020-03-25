@@ -3,5 +3,5 @@
 {% block filter %}
         <h3>See the filter result here</h3>
         <img src="{{ url_for('static', filename=outputfilename) }}" alt="{{ outputfilename }}" width="240" heigth="180" />
-        <a href="/download/{{ outputfilename }}" target="_blank">Click here to download!</a>
+        <a href="/download/{{ outputfilename }}">Click here to download!</a>
 {% endblock %}
