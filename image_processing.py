@@ -34,5 +34,5 @@ def applyfilter(path, preset):
         im = im.convert("RGB")
 
     im.save(constants.UPLOAD_FOLDER + outputfilename)
-    #s3_operations.upload_file(outputfilename, constants.BUCKET)
+    s3_operations.upload_file(outputfilename, constants.BUCKET)
     return outputfilename
