@@ -75,7 +75,7 @@ def upload():
     if request.method == "POST":
         f = request.files['file']
         f.save(os.path.join(app.config['BASE_FOLDER'], app.config['UPLOAD_FOLDER'], f.filename))
-        s3_operations.upload_file(f"static/{f.filename}", BUCKET)
+        s3_operations.upload_file(f"static/{f.filename}", constants.BUCKET)
 
         return redirect("/landing")
     
