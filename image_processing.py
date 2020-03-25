@@ -1,6 +1,6 @@
 from PIL import Image, ImageOps,ImageFilter
 import constants
-from flask import Flask, render_template
+import s3_operations
 
 
 def applyfilter(path, preset):
@@ -34,4 +34,5 @@ def applyfilter(path, preset):
         im = im.convert("RGB")
 
     im.save(constants.UPLOAD_FOLDER + outputfilename)
+    s3_operations.upload_file(outpufilename, constants.BUCKET)
     return outputfilename
