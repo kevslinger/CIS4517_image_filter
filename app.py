@@ -24,7 +24,7 @@ def landing():
     #contents = constants.local_list_files() # TODO: NOT NEEDED FOR REMOTE
     print(contents)
     for item in contents:
-        print(item['key'])
+        print(item['Key'])
     return render_template("landing.html", contents=contents)
 
 #######################
