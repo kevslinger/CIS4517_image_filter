@@ -22,10 +22,22 @@
         <form method="POST" action="/filter/{{ filepath }}/poster">
           <input type=submit value=Poster!>
         </form>
+         <form method="POST" action="/filter/{{ filepath }}/gray">
+          <input type=submit value=Gray!>
+         </form>
+          <form method="POST" action="/filter/{{ filepath }}/edge">
+          <input type=submit value=Edge!>
+          </form>
+           <form method="POST" action="/filter/{{ filepath }}/solar">
+          <input type=submit value=Solar!>
+        </form>
       </div>
       <div>
         {% block filter %}
         {% endblock %}
       </div>
+      <div>
+        {% block download %}
+        {% endblock %}
   </body>
 </html>
