@@ -21,7 +21,8 @@ def route_to_landing():
 @app.route("/landing")
 def landing():
     contents = s3_operations.list_files(constants.BUCKET)
-    #contents = local_list_files() # TODO: NOT NEEDED FOR REMOTE
+    #contents = constants.local_list_files() # TODO: NOT NEEDED FOR REMOTE
+    print(contents)
     return render_template("landing.html", contents=contents)
 
 #######################
