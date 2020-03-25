@@ -9,7 +9,7 @@ def applyfilter(path, preset):
     
     im = Image.open(constants.UPLOAD_FOLDER + path)
     if preset == 'gray':
-        im = ImageOps.gray
+        im = ImageOps.grayscale(im)
 
     if preset == 'edge':
         im = ImageOps.grayscale(im)
@@ -34,5 +34,5 @@ def applyfilter(path, preset):
         im = im.convert("RGB")
 
     im.save(constants.UPLOAD_FOLDER + outputfilename)
-    s3_operations.upload_file(outputfilename, constants.BUCKET)
+    #s3_operations.upload_file(outputfilename, constants.BUCKET)
     return outputfilename
