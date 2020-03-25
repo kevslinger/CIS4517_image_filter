@@ -12,14 +12,14 @@
       <p>On this page, you can apply filters to your image!</p>
       <div>
         <h3>Your uploaded image</h3>
-        <img src="http://127.0.0.1:5000/uploads/{{ filename }}" alt={{ filename }} width="240" height="180" />
+        <img src="{{ url_for('static', filename=filepath) }}" alt={{ filename }} width="240" height="180" />
       </div>
       <div>
         <h3>Apply a filter here</h3>
-        <form method="POST" action="/filter/{{ filename }}/blur">
+        <form method="POST" action="/filter/{{ filepath }}/blur">
           <input type=submit value=Blur!>
         </form>
-        <form method="POST" action="/filter/{{ filename }}/poster">
+        <form method="POST" action="/filter/{{ filepath }}/poster">
           <input type=submit value=Poster!>
         </form>
       </div>
