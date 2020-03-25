@@ -1,5 +1,6 @@
 from PIL import Image, ImageOps,ImageFilter
 import constants
+from flask import Flask, render_template
 
 
 def applyfilter(path, preset):
