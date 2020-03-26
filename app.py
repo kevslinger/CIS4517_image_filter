@@ -71,7 +71,7 @@ def apply_preset(filename, preset):
 @app.route("/download/<filename>", methods=['GET'])
 def download(filename):
     if request.method == 'GET':
-        output = s3_operations.dow*nload_file(filename, constants.BUCKET)
+        output = s3_operations.download_file(filename, constants.BUCKET)
 
         return send_file(output, as_attachment=True)
 
