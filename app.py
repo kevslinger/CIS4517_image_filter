@@ -21,14 +21,13 @@ def route_to_landing():
 @app.route("/landing")
 def landing():
     contents = s3_operations.list_files(constants.BUCKET)
-    #contents = constants.local_list_files() # TODO: NOT NEEDED FOR REMOTE
     return render_template("landing.html", contents=contents)
 
 #######################
 ### Upload Page #######
 #######################
 
-# Upload to S3 (for remote use only)
+# Upload to S3
 @app.route("/upload_s3", methods=['POST'])
 def upload():
     if request.method == "POST":
@@ -44,35 +43,7 @@ def upload():
 
         return redirect("/filter/" + f.filename)
 
-# Upload to local (not for remote)
-@app.route('/upload_local', methods=['GET', 'POST'])
-def upload_file():
-    if request.method == 'POST':
-        # check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        file = request.files['file']
-        # if user does not select file, browser also
-        # submit an empty part without filename
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and constants.allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['BASE_FOLDER'], app.config['UPLOAD_FOLDER'], filename))
-            return redirect("/filter/" + filename)
-            #return redirect(url_for('/filter/' + filename,
-                                    #filename=filename))
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=file>
-      <input type=submit value=Upload>
-    </form>
-    '''
+
 
 #################################
 #### Image Filtering Pages ######
@@ -93,18 +64,14 @@ def apply_preset(filename, preset):
                                  outputfilename=outputfilename)
 
 ##########################
-### Download Pages #######
+### Download Page ########
 ##########################
 
-# I... forget exactly how this function is being used but i'll figure it out.
-@app.route("/download_local/<filename>", methods=['GET'])
-def send_file_to_kev(filename):
-    return send_from_directory(os.path.join(app.config['BASE_FOLDER'], app.config['UPLOAD_FOLDER']), filename)
-    
+# Download from S3
 @app.route("/download/<filename>", methods=['GET'])
 def download(filename):
     if request.method == 'GET':
-        output = s3_operations.download_file(filename, constants.BUCKET)
+        output = s3_operations.dow*nload_file(filename, constants.BUCKET)
 
         return send_file(output, as_attachment=True)
 
